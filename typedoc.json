@@ -1,0 +1,12 @@
+{
+  "entryPoints": ["src/index.ts"], // Adjust to your main entry point(s)
+  "out": "docs", // Output directory for the generated documentation
+  "exclude": [], // Exclude test files
+  "includeVersion": true, // Include the project version in the documentation
+  "tsconfig": "./src/tsconfig.json", // Path to your TypeScript configuration file
+  "theme": "default", // Documentation theme
+  "excludeExternals": true, // Exclude external modules from the documentation
+  "excludePrivate": true, // Exclude private members from the documentation
+  "excludeProtected": true, // Exclude protected members from the documentation
+  "readme": "README.md" // Include your project's README file in the documentation
+}

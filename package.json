@@ -1,0 +1,64 @@
+{
+  "name": "your-next-awesome-package",
+  "private": false,
+  "version": "0.0.0",
+  "description": "Start your next typescript package with a light, robust and production-ready repo.",
+  "keywords": [],
+  "author": "Your Name <your-email>",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "format": "npx biome format",
+    "format:fix": "npm run format -- --write",
+    "lint": "npx biome lint",
+    "lint:fix": "npm run lint -- --fix",
+    "biome": "npx biome check",
+    "biome:fix": "npm run biome -- --fix",
+    "typecheck": "npx tsc -p ./src/tsconfig.json --declaration --noEmit --incremental false",
+    "check": "npx concurrently npm:typecheck npm:biome",
+    "attw": "npm run build && npx attw",
+    "vitest": "npx vitest -c vitest.config.ts",
+    "test": "npm run vitest -- --run",
+    "test:cov": "npm run test -- --coverage",
+    "test:html": "npm run test:cov && open ./coverage/lcov-report/index.html",
+    "validate": "npm run check && npm run test:cov && npm run attw",
+    "tsc": "tsc -p ./src/tsconfig.json",
+    "build": "npm run clean && npm run tsc",
+    "build:docs": "npx typedoc",
+    "watch:ts": "npm run tsc -- --watch --sourceMap true --incremental true",
+    "watch:tests": "npm run vitest -- --watch",
+    "dev": "npm run clean && npx concurrently 'npm:watch:*'",
+    "postinstall": "lefthook install"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@biomejs/biome": "2.1.4",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@types/node": "^24.2.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "concurrently": "^9.2.0",
+    "lefthook": "^1.12.2",
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.4",
+    "rimraf": "^6.0.1",
+    "typedoc": "^0.28.9",
+    "typescript": "^5.9.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  }
+}
