@@ -1,3 +1,4 @@
+> **Warning** This package is still in development and unpublished. The install directions below will not work and it should not be used yet in production.
 # astro-tw-autoreference
 This package will automatically inject Tailwind 4 `@reference` directives at the top of your Astro components style blocks
 
