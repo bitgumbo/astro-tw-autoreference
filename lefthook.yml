@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     check: #
-      run: npm run check
+      run: npx concurrently npm:typecheck npm:biome:fix
 
 commit-msg:
   commands:
