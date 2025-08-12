@@ -5,7 +5,8 @@
       "!node_modules/**",
       "!dist/**",
       "!docs/**",
-      "!coverage/**"
+      "!coverage/**",
+      "!astro-sandbox/**"
     ]
   },
 

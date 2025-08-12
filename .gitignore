@@ -6,3 +6,4 @@ docs
 .tsbuildinfo
 .npmrc
 .env
+astro-sandbox

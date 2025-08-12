@@ -1,6 +1,6 @@
 /* Root TsConfig - Does not specify any inclues, and is primarily for IDE support and common settings to extend from */
 {
-  "exclude": ["node_modules", "dist", "docs", "coverage"],
+  "exclude": ["node_modules", "dist", "docs", "coverage", "astro-sandbox"],
   "compilerOptions": {
     "target": "ES2020",
     "module": "NodeNext",
