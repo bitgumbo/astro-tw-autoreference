@@ -40,6 +40,7 @@
     "build:docs": "npx typedoc",
     "watch:ts": "npm run tsc -- --watch --sourceMap true --incremental true",
     "watch:tests": "npm run vitest -- --watch",
+    "watch:yalc": "chokidar 'dist/**/*.js' --debounce 500 -c 'yalc push'",
     "dev": "npm run clean && npx concurrently 'npm:watch:*'"
   },
   "devDependencies": {
