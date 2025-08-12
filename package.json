@@ -1,10 +1,10 @@
 {
-  "name": "your-next-awesome-package",
+  "name": "astro-tw-autoreference",
   "private": false,
   "version": "0.0.0",
-  "description": "Start your next typescript package with a light, robust and production-ready repo.",
+  "description": "Automaticaly inject tailwind `@reference` directives into Astro component style blocks.",
   "keywords": [],
-  "author": "Your Name <your-email>",
+  "author": "BitGumbo <bitgumbo@gmail.com",
   "license": "MIT",
   "type": "module",
   "module": "./dist/index.js",
