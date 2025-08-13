@@ -41,7 +41,8 @@
     "watch:ts": "npm run tsc -- --watch --sourceMap true --incremental true",
     "watch:tests": "npm run vitest -- --watch",
     "watch:yalc": "scripts/sandbox-dev.sh",
-    "dev": "npm run clean && npm run build && npx concurrently 'npm:watch:*'"
+    "dev": "npm run clean && npm run build && npx concurrently 'npm:watch:*'",
+    "init": "lefthook install && scripts/sandbox-setup.sh"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",

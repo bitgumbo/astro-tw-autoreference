@@ -1,17 +1,26 @@
 #!/usr/bin/env bash
 
-# set -euo pipefail
+##
+# Build the sandbox project
+#
+# If the astro build fails, the error output will be crafted into the index.html file
+#
+# Usage: ./scripts/sandbox-build.sh
+##
 
-function abort() {
-    echo "❌ Aborting: $1" >&2
-    exit 1
-}
+source scripts/lib.sh
 
 cd astro-sandbox || abort "Error: could not change directory to 'astro-sandbox'"
 
-# Try building, capture errors
-if ! OUTPUT=$(astro build 2>&1); then
-  echo "Build failed, injecting error message into index.html"
+# if build fails, inject it's output
+check "Building the Astro sandbox"
+
+if  OUTPUT=$(astro build 2>&1); then
+  info "Astro build completed successful"
+
+else
+  warn "Build failed, injecting error message into index.html"
+  [[ ! -d dist ]] && mkdir dist
   cat > dist/index.html <<EOF
 <!DOCTYPE html>
 <html lang="en">
@@ -30,5 +39,5 @@ if ! OUTPUT=$(astro build 2>&1); then
 EOF
 fi
 
-npx browser-sync reload
-
+# Push changes to browser-sync
+reloadBrowserSync

@@ -1,0 +1,16 @@
+// @ts-check
+
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'astro/config';
+import twAutoReference from 'astro-tw-autoreference';
+
+export default defineConfig({
+  vite: {
+    plugins: [
+      twAutoReference({
+        referencePath: '../styles/tailwind.css',
+      }),
+      tailwindcss(),
+    ],
+  },
+});
