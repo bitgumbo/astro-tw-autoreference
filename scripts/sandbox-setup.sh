@@ -58,24 +58,8 @@ npm install -D tailwindcss @tailwindcss/vite
 npx yalc add astro-tw-autoreference
 npm install
 
-# Files to be copied into the sandbox
-declare -A TEMPLATES
-TEMPLATES["astro.config.mjs"]="astro.config.mjs"
-TEMPLATES["tailwind.css"]="src/styles/tailwind.css"
-TEMPLATES["index.astro"]="src/pages/index.astro"
-
 # Copy template files
- for key in "${!TEMPLATES[@]}"; do
-   src="$ROOT_DIR/scripts/templates/$key"
-   dst="${TEMPLATES[$key]}"
-   if [[ -f "$src" ]]; then
-     info "Creating $dst"
-     mkdir -p "$(dirname "$dst")"
-     cp "$src" "$dst"
-    else
-      warn "Failed to copy source '$src': file not found"
-   fi
- done
+cp -r scripts/templates/* astro-sandbox/
 
 # All done!
 check "Astro sandbox created in ./astro-sandbox"
