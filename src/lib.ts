@@ -1,0 +1,71 @@
+import path from "node:path";
+
+const tailwindDirectivePattern = /@(apply|variant|utility)\b/i;
+
+/**
+ * Convert a relative path to an absolute path
+ *
+ * @param p the path to resolve
+ * @param root the root to resolve from
+ * @returns the absolute path
+ */
+export const toAbsolutePath = (p: string, root: string = process.cwd()) => {
+  return path.resolve(root, p);
+};
+
+/**
+ * Convert a list of relative paths to absolute paths
+ *
+ * @param paths list of paths to resolve
+ * @param root the root to resolve from
+ * @returns a list of absolute paths
+ */
+export const toAbsolutePaths = (paths: string[], root: string = process.cwd()) => {
+  return paths.map((p) => toAbsolutePath(p, root));
+};
+
+/**
+ * Determine if a file should have references injected
+ *
+ * @param id file id as returned by Vite
+ * @param code file contents as returned by Vite
+ * @returns true if the file should have references injected
+ *
+ */
+export const shouldInjectReferences = (
+  id: string,
+  code: string,
+  includePrefixes: string[],
+  excludePrefixes: string[]
+) => {
+  const isIncluded = includePrefixes.some((prefix) => id.startsWith(prefix));
+  const isExcluded = excludePrefixes.some((prefix) => id.startsWith(prefix));
+
+  const asUrl = new URL(id, "file://");
+
+  const isAstroFile = asUrl.pathname.endsWith(".astro");
+  const isTypeStyle = asUrl.searchParams.get("type") === "style";
+  const hasAstroFlag = asUrl.searchParams.has("astro");
+  const hasLangFlag = asUrl.searchParams.has("lang.css");
+  const hasTwDirectives = tailwindDirectivePattern.test(code);
+
+  return (
+    isIncluded &&
+    !isExcluded &&
+    isAstroFile &&
+    isTypeStyle &&
+    hasAstroFlag &&
+    hasLangFlag &&
+    hasTwDirectives
+  );
+};
+
+/**
+ * Generate a list of reference directives
+ *
+ * @param references css files to autoreference
+ * @returns a list of reference directives
+ */
+export const generateReferences = (references: string[]): string[] => {
+  return references.map((reference) => `@reference "${reference}";`);
+};
