@@ -59,7 +59,7 @@ npx yalc add astro-tw-autoreference
 npm install
 
 # Copy template files
-cp -r scripts/templates/* astro-sandbox/
+cp -r ../scripts/templates/* ./
 
 # All done!
 check "Astro sandbox created in ./astro-sandbox"
