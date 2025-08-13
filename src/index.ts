@@ -1,9 +1,5 @@
-import type { Plugin } from 'vite';
-import {
-  generateReferences,
-  shouldInjectReferences,
-  toAbsolutePaths,
-} from './lib.js';
+import type { Plugin } from "vite";
+import { generateReferences, shouldInjectReferences, toAbsolutePaths } from "./lib.js";
 
 /** Options for the plugin */
 export interface Options {
@@ -23,7 +19,7 @@ export interface Options {
 /** Default options for the plugin */
 const DEFAULTS: Required<Options> = {
   root: process.cwd(),
-  include: ['src/components', 'src/layouts', 'src/pages'],
+  include: ["src/components", "src/layouts", "src/pages"],
   exclude: [],
   references: [],
 };
@@ -40,18 +36,18 @@ export default function astroTwAutoreference(options: Options = {}): Plugin {
 
   const includePrefixes = toAbsolutePaths(config.include, config.root);
   const excludePrefixes = toAbsolutePaths(config.exclude, config.root);
+  const absoluteReferences = toAbsolutePaths(config.references, config.root);
 
   return {
-    name: 'vite-plugin-astro-tw-autoreference',
-    enforce: 'pre',
+    name: "vite-plugin-astro-tw-autoreference",
+    enforce: "pre",
 
     transform(code, id) {
-      if (!shouldInjectReferences(id, code, includePrefixes, excludePrefixes))
-        return;
+      if (!shouldInjectReferences(id, code, includePrefixes, excludePrefixes)) return;
 
-      let result = '';
+      let result = "";
 
-      for (const refline of generateReferences(config.references)) {
+      for (const refline of generateReferences(absoluteReferences)) {
         if (!code.includes(refline)) {
           result += `${refline}\n`;
         }
