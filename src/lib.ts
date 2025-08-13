@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from 'node:path';
 
 const tailwindDirectivePattern = /@(apply|variant|utility)\b/i;
 
@@ -20,7 +20,10 @@ export const toAbsolutePath = (p: string, root: string = process.cwd()) => {
  * @param root the root to resolve from
  * @returns a list of absolute paths
  */
-export const toAbsolutePaths = (paths: string[], root: string = process.cwd()) => {
+export const toAbsolutePaths = (
+  paths: string[],
+  root: string = process.cwd(),
+) => {
   return paths.map((p) => toAbsolutePath(p, root));
 };
 
@@ -36,17 +39,17 @@ export const shouldInjectReferences = (
   id: string,
   code: string,
   includePrefixes: string[],
-  excludePrefixes: string[]
+  excludePrefixes: string[],
 ) => {
   const isIncluded = includePrefixes.some((prefix) => id.startsWith(prefix));
   const isExcluded = excludePrefixes.some((prefix) => id.startsWith(prefix));
 
-  const asUrl = new URL(id, "file://");
+  const asUrl = new URL(id, 'file://');
 
-  const isAstroFile = asUrl.pathname.endsWith(".astro");
-  const isTypeStyle = asUrl.searchParams.get("type") === "style";
-  const hasAstroFlag = asUrl.searchParams.has("astro");
-  const hasLangFlag = asUrl.searchParams.has("lang.css");
+  const isAstroFile = asUrl.pathname.endsWith('.astro');
+  const isTypeStyle = asUrl.searchParams.get('type') === 'style';
+  const hasAstroFlag = asUrl.searchParams.has('astro');
+  const hasLangFlag = asUrl.searchParams.has('lang.css');
   const hasTwDirectives = tailwindDirectivePattern.test(code);
 
   return (

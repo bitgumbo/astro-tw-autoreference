@@ -1,3 +1,3 @@
-import vitePlugin from "./vite.js";
+import vitePlugin from './vite.js';
 
 export { vitePlugin };
