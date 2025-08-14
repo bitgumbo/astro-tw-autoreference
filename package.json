@@ -1,7 +1,7 @@
 {
   "name": "astro-tw-autoreference",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Automaticaly inject tailwind `@reference` directives into Astro component style blocks.",
   "keywords": [],
   "author": "BitGumbo <bitgumbo@gmail.com",
