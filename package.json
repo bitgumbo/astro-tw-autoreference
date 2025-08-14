@@ -3,7 +3,15 @@
   "private": false,
   "version": "0.0.1",
   "description": "Automaticaly inject tailwind `@reference` directives into Astro component style blocks.",
-  "keywords": [],
+  "keywords": [
+    "astro",
+    "astrojs",
+    "tailwind",
+    "tailwindcss",
+    "autoinject",
+    "css",
+    "plugin"
+  ],
   "author": "BitGumbo <bitgumbo@gmail.com",
   "license": "MIT",
   "type": "module",
