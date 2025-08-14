@@ -1,10 +1,6 @@
 name: Build & Deploy Docs
 
-on:
-  workflow_run:
-    workflows: ["Release & Publish"]
-    types:
-      - completed
+on: workflow_run
 
 jobs:
   build:
