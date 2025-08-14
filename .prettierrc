@@ -1,11 +1,6 @@
 {
-  "plugins": [],
-
-  "semi": true,
-  "singleQuote": false,
-  "printWidth": 100,
+  "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
-  "endOfLine": "lf",
-  "trailingComma": "es5"
+  "endOfLine": "lf"
 }

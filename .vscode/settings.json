@@ -3,15 +3,27 @@
   "explorer.fileNesting.patterns": {
     "package.json": "package-lock.json,.gitignore,commitlint.config.mjs,lefthook.yml,tsconfig.json,.prettierrc,vitest.config.ts,typedoc.json,biome.json,.npmignore,.attw.json"
   },
+
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
+
   "editor.codeActionsOnSave": {
     "source.organizeImports.biome": "explicit",
     "source.fixAll.biome": "explicit"
   },
 
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
