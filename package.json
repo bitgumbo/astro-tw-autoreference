@@ -52,6 +52,7 @@
     "@release-it/conventional-changelog": "^10.0.1",
     "@types/node": "^24.2.1",
     "@vitest/coverage-v8": "^3.2.4",
+    "astro": "^5.13.0",
     "browser-sync": "^3.0.4",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^9.2.0",
@@ -64,5 +65,8 @@
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
     "yalc": "^1.0.0-pre.53"
+  },
+  "peerDependencies": {
+    "astro": "^5.13.0"
   }
 }
