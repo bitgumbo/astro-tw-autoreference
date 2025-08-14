@@ -29,10 +29,6 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist",
-    "format": "npx biome format",
-    "format:fix": "npm run format -- --write",
-    "lint": "npx biome lint",
-    "lint:fix": "npm run lint -- --fix",
     "biome": "npx biome check",
     "biome:fix": "npm run biome -- --fix",
     "typecheck": "npx tsc -p ./src/tsconfig.json --declaration --noEmit --incremental false",
