@@ -1,8 +1,10 @@
 pre-commit:
   parallel: true
   commands:
-    check: #
-      run: npx concurrently npm:typecheck npm:biome:fix
+    type-check:
+      run: npm run typecheck
+    biome-check:
+      run: npm run biome -- --staged --no-errors-on-unmatched --files-ignore-unknown=true
 
 commit-msg:
   commands:
