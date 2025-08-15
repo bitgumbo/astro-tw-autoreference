@@ -71,19 +71,17 @@ describe('lib functions', () => {
   });
 
   describe('shouldInjectReferences', () => {
-    const includePrefixes = ['foo'];
-    const excludePrefixes = ['foo/baz'];
+    const options = lib.normalizeOptions({
+      include: ['foo'],
+      exclude: ['foo/baz'],
+      references: 'dummy.css',
+    });
 
     test.each(shouldInjectTestCases)(
       '$description',
       ({ file, code, expected }) => {
         expect(
-          lib.shouldInjectReferences(
-            file,
-            code,
-            includePrefixes,
-            excludePrefixes,
-          ),
+          lib.shouldInjectReferences(lib.toAbsolutePath(file), code, options),
         ).toBe(expected);
       },
     );
