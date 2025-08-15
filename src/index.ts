@@ -1,9 +1,8 @@
 import type { Plugin } from 'vite';
 import {
-  enforceArray,
   generateReferences,
+  normalizeOptions,
   shouldInjectReferences,
-  toAbsolutePaths,
 } from './lib.js';
 import type { Options } from './types.ts';
 
@@ -22,20 +21,16 @@ const DEFAULTS: Required<Options> = {
  *
  */
 export default function astroTwAutoreference(options: Options = {}): Plugin {
-  const config = { ...DEFAULTS, ...options };
+  const normalizedOptions = normalizeOptions({ ...DEFAULTS, ...options });
 
-  const includePrefixes = toAbsolutePaths(enforceArray(config.include));
-  const excludePrefixes = toAbsolutePaths(enforceArray(config.exclude));
-  const absoluteReferences = toAbsolutePaths(enforceArray(config.references));
-  const referenceLines = generateReferences(absoluteReferences);
+  const referenceLines = generateReferences(normalizedOptions.references);
 
   return {
     name: 'vite-plugin-astro-tw-autoreference',
     enforce: 'pre',
 
     transform(code, id) {
-      if (!shouldInjectReferences(id, code, includePrefixes, excludePrefixes))
-        return;
+      if (!shouldInjectReferences(id, code, normalizedOptions)) return;
 
       let result = '';
 

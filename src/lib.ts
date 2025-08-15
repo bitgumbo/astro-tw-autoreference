@@ -1,4 +1,5 @@
 import path from 'node:path';
+import type { NormalizedOptions, Options } from './types.js';
 
 const tailwindDirectivePattern = /@(apply|variant|utility)\b/i;
 
@@ -38,11 +39,10 @@ export const toAbsolutePaths = (
 export const shouldInjectReferences = (
   id: string,
   code: string,
-  includePrefixes: string[],
-  excludePrefixes: string[],
+  options: NormalizedOptions,
 ) => {
-  const isIncluded = includePrefixes.some((prefix) => id.startsWith(prefix));
-  const isExcluded = excludePrefixes.some((prefix) => id.startsWith(prefix));
+  const isIncluded = options.include.some((prefix) => id.startsWith(prefix));
+  const isExcluded = options.exclude.some((prefix) => id.startsWith(prefix));
 
   const asUrl = new URL(id, 'file://');
 
@@ -83,3 +83,23 @@ export const generateReferences = (references: string[]): string[] => {
 export const enforceArray = <T>(value: T | T[]): T[] => {
   return Array.isArray(value) ? value : [value];
 };
+
+/**
+ * Normalize plugin options
+ *
+ * The function takes an object of options and returns a new object with the
+ * `include`, `exclude`, and `references` properties normalized to arrays of
+ * absolute paths.
+ *
+ * @param options plugin options
+ * @returns normalized plugin options
+ *
+ */
+
+export const normalizeOptions = (
+  options: Required<Options>,
+): NormalizedOptions => ({
+  include: toAbsolutePaths(enforceArray(options.include)),
+  exclude: toAbsolutePaths(enforceArray(options.exclude)),
+  references: toAbsolutePaths(enforceArray(options.references)),
+});

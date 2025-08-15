@@ -11,3 +11,9 @@ export interface Options {
   /** Paths to css files you want to auto reference */
   references?: OneOrMany<string>;
 }
+
+export interface NormalizedOptions {
+  include: string[];
+  exclude: string[];
+  references: string[];
+}
