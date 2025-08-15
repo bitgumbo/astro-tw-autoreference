@@ -72,3 +72,14 @@ export const shouldInjectReferences = (
 export const generateReferences = (references: string[]): string[] => {
   return references.map((reference) => `@reference "${reference}";`);
 };
+
+/**
+ * Ensure that a value is an array, or convert it to an array if it is a single value.
+ *
+ * @param value the value to enforce as an array
+ * @returns the value if it is an array, otherwise an array containing the value
+ *
+ */
+export const enforceArray = <T>(value: T | T[]): T[] => {
+  return Array.isArray(value) ? value : [value];
+};

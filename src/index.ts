@@ -1,5 +1,6 @@
 import type { Plugin } from 'vite';
 import {
+  enforceArray,
   generateReferences,
   shouldInjectReferences,
   toAbsolutePaths,
@@ -25,7 +26,7 @@ export default function astroTwAutoreference(options: Options = {}): Plugin {
 
   const includePrefixes = toAbsolutePaths(config.include);
   const excludePrefixes = toAbsolutePaths(config.exclude);
-  const absoluteReferences = toAbsolutePaths(config.references);
+  const absoluteReferences = toAbsolutePaths(enforceArray(config.references));
   const referenceLines = generateReferences(absoluteReferences);
 
   return {
