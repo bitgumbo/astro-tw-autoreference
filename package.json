@@ -11,8 +11,14 @@
     "tailwindcss",
     "autoinject",
     "css",
-    "plugin"
+    "plugin",
+    "tooling"
   ],
+  "homepage": "https://github.com/bitgumbo/astro-tw-autoreference",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitgumbo/astro-tw-autoreference.git"
+  },
   "author": "BitGumbo <bitgumbo@gmail.com",
   "license": "MIT",
   "type": "module",
