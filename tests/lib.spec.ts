@@ -45,4 +45,23 @@ describe('lib functions', () => {
       '@reference "bar.css";',
     ]);
   });
+
+  test('enforceArray', () => {
+    expect(lib.enforceArray('foo')).toEqual(['foo']);
+    expect(lib.enforceArray(['foo', 'bar'])).toEqual(['foo', 'bar']);
+  });
+
+  test('normalizeOptions', () => {
+    expect(
+      lib.normalizeOptions({
+        include: 'foo',
+        exclude: 'bar',
+        references: 'baz',
+      }),
+    ).toEqual({
+      include: [`${process.cwd()}/foo`],
+      exclude: [`${process.cwd()}/bar`],
+      references: [`${process.cwd()}/baz`],
+    });
+  });
 });
