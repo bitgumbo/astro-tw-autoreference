@@ -41,10 +41,14 @@ export const shouldInjectReferences = (
   code: string,
   options: NormalizedOptions,
 ) => {
-  const isIncluded = options.include.some((prefix) => id.startsWith(prefix));
-  const isExcluded = options.exclude.some((prefix) => id.startsWith(prefix));
-
   const asUrl = new URL(id, 'file://');
+
+  const isIncluded = options.include.some((prefix) =>
+    asUrl.pathname.startsWith(prefix),
+  );
+  const isExcluded = options.exclude.some((prefix) =>
+    asUrl.pathname.startsWith(prefix),
+  );
 
   const isAstroFile = asUrl.pathname.endsWith('.astro');
   const isTypeStyle = asUrl.searchParams.get('type') === 'style';
