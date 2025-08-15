@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>0.0.3 (2025-08-15)</small>
+
+* chore: added tailwindcss as devDep ([6aebcbd](https://github.com/bitgumbo/astro-tw-autoreference/commit/6aebcbd))
+
 ## <small>0.0.2 (2025-08-14)</small>
 
 * chore: added keywords to package.json ([36276f5](https://github.com/bitgumbo/astro-tw-autoreference/commit/36276f5))
