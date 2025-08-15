@@ -78,6 +78,7 @@
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
-    "astro": "^5.13.0"
+    "astro": "^5.13.0",
+    "tailwindcss": "^4.0.0"
   }
 }
