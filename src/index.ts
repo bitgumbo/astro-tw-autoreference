@@ -24,8 +24,8 @@ const DEFAULTS: Required<Options> = {
 export default function astroTwAutoreference(options: Options = {}): Plugin {
   const config = { ...DEFAULTS, ...options };
 
-  const includePrefixes = toAbsolutePaths(config.include);
-  const excludePrefixes = toAbsolutePaths(config.exclude);
+  const includePrefixes = toAbsolutePaths(enforceArray(config.include));
+  const excludePrefixes = toAbsolutePaths(enforceArray(config.exclude));
   const absoluteReferences = toAbsolutePaths(enforceArray(config.references));
   const referenceLines = generateReferences(absoluteReferences);
 
