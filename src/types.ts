@@ -1,6 +1,8 @@
 export type OneOrMany<T> = T | T[];
 
-/** Options for the plugin */
+/**
+ * Plugin options for user api
+ */
 export interface Options {
   /** Include files whose path starts with one of these */
   include?: OneOrMany<string>;
@@ -12,6 +14,9 @@ export interface Options {
   references?: OneOrMany<string>;
 }
 
+/**
+ * Plugin options with normalized paths and non-null fields
+ */
 export interface NormalizedOptions {
   include: string[];
   exclude: string[];
