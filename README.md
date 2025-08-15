@@ -1,7 +1,7 @@
 # astro-tw-autoreference
 This package will automatically inject Tailwind 4 `@reference` directives at the top of your Astro components style blocks.
 
-It is currently implemented as a Vite plugin, but future versions may be implemented as an Astro integration.
+It is currently implemented as a Vite plugin, but future versions may offer as an Astro integration as well.
 
 > ⚠️ Early development (v0.x) — the plugin is small and stable, but API changes are still possible.  
 > There may be edge cases I haven’t considered based on different workflows,  
@@ -46,7 +46,7 @@ export default defineConfig({
   vite: {
     plugins: [
       twAutoReference({
-        references: ['src/styles/tailwind.css']
+        references: 'src/styles/tailwind.css'
       }),
       tailwindcss()
     ],
@@ -62,9 +62,9 @@ That's all you need to do.  Simply use your Astro components as normal and enjoy
 The plugin options are defined as such:
 ```ts
 export interface Options {
-  include?: string[];
-  exclude?: string[];
-  references?: string[];
+  include?: string | string[];
+  exclude?: string | string[];
+  references: string | string[];
 }
 ```
 
@@ -77,6 +77,6 @@ Resolved paths will be used as prefixes and, as such, files will be included if 
 An array of paths to determine which files should not receive reference injections. Same as `Options["include"]`, but files will be excluded if they start with any of the prefixes.
 
 ### `Options["references"]`
-An array of CSS files for which reference directives will be injected. Each file in this array will result in a reference directive injected into any files allowed by the above options.
+An single string, or array of strings of CSS files for which reference directives will be injected. Each file in this array will result in a reference directive injected into any files allowed by the above options.
 
 
